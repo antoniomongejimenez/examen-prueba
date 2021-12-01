@@ -3,6 +3,7 @@
 use App\Http\Controllers\DepartController;
 use App\Http\Controllers\EmpleController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\VuelosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,9 @@ Route::delete('/emple/{id}', [EmpleController::class, 'destroy']);
 Route::get('/emple/{id}/edit', [EmpleController::class, 'edit']);
 Route::put('/emple/{id}', [EmpleController::class, 'update'])
     ->name('emple.update');
+
+
+Route::get('/vuelos', [VuelosController::class, 'index']);
 
 Route::get('/login', [UsuariosController::class, 'loginForm']);
 Route::post('/login', [UsuariosController::class, 'login']);
