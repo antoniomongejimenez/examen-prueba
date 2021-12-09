@@ -45,7 +45,7 @@ Route::put('/emple/{id}', [EmpleController::class, 'update'])
 
 
 Route::get('/vuelos', [VuelosController::class, 'index']);
-Route::put('/vuelos/{id}', [EmpleController::class, 'update'])
+Route::put('/vuelos/{id}', [VuelosController::class, 'update'])
     ->name('vuelos.update');
 Route::get('/vuelos/{id}/edit', [VuelosController::class, 'edit']);
 

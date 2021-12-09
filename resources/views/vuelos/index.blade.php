@@ -32,7 +32,6 @@
                         <th class="px-6 py-2 text-xs text-gray-500">
                             Reservar
                         </th>
-
                     </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -94,10 +93,18 @@
                                     </a>
                                 </div>
                             </td>
-                            <td class="px-6 py-4">
-                                <a href="/vuelos/{{ $vuelo->id }}/edit"
-                                    class="px-4 py-1 text-sm text-white bg-blue-400 rounded">Reservar</a>
-                            </td>
+                            @if ($vuelo->plazas == 0)
+                                <td class="px-6 py-4">
+                                    <a href=""
+                                        class="disabled px-4 py-1 text-sm text-white bg-blue-400 rounded">Reservar</a>
+                                </td>
+                            @else
+                                <td class="px-6 py-4">
+                                    <a href="/vuelos/{{ $vuelo->id }}/edit"
+                                        class="px-4 py-1 text-sm text-white bg-blue-400 rounded">Reservar</a>
+                                </td>
+                            @endif
+
                         </tr>
                     @endforeach
                 </tbody>

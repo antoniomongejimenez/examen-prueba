@@ -26,9 +26,12 @@ class VuelosController extends Controller
             ->select('v.*', 'origen.denominacion as origen', 'destino.denominacion as destino', 'c.denominacion as compania')
             ->get();
 
+
         return view('vuelos.index', [
             'vuelos' => $vuelos,
         ]);
+
+
     }
 
     public function edit($id)
@@ -39,6 +42,31 @@ class VuelosController extends Controller
             'vuelo' => $vuelo,
         ]);
     }
+
+    public function update($id)
+    {
+        $vuelos = $this->validar();
+        $this->findVuelo($id);
+
+        DB::table('vuelos')
+            ->where('id', $id)
+            ->update([
+            'plazas' => $vuelos['plazas'] - 1, //para que cada vez que reserve se quite una plaza
+        ]);
+
+        return redirect('/vuelos')
+            ->with('success', 'Vuelo reservado con éxito.');
+    }
+
+    private function validar()
+    {
+        $vuelos = request()->validate([
+            'plazas' => 'required|max:255',
+        ]);
+
+        return $vuelos;
+    }
+
 
     private function findVuelo($id)
     {
